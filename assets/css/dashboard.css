@@ -62,3 +62,46 @@ h1 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
 }
+.abtn {
+	border:1px solid rgba(0, 0, 0, 0.15) !important;
+}
+/* PAGINATION */
+.pagination > li > a {
+  background: #fafafa;
+  color: #666;
+  -webkit-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
+  -moz-box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.09);
+  box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.09);
+}
+.pagination > li:first-of-type a,
+.pagination > li:last-of-type a {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.pagination-sm > li > a, .pagination-sm > li > span {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.pagination > li > a, .pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+	
+}
+.pagination{
+	margin-bottom:5px;
+	margin-top:5px;
+	float:right;
+}
+.pagination > li > a:hover, .pagination > li > a:focus {
+    background-color: #eee;
+}
+.pagination > li > span{
+	background-color: #eee;
+}

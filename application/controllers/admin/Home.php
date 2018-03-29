@@ -10,7 +10,7 @@ class Home extends CoreController {
 
 	public function index()
 	{
-        $this->template['view'] .= $this->load->view("admin/home/index", array(), true);
+        $this->template['view'] .= $this->load->view("admin/home/index", array("id"=>"dashboard","subtitle"=>"Dashboard"), true);
         $this->loadAdmin();
 	}
 }

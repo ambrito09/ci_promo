@@ -7,13 +7,16 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="<?=base_url()?>assets/img/favicon.png">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title><?=$title?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="<?=base_url()?>assets/css/dashboard.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -45,7 +48,7 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html#">Overview <span class="sr-only">(current)</span></a>
+                    <a class="nav-link <?=($id=="dashboard"?"active":"")?>" href="<?=site_url()?>/admin/Home/"><i class="fa fa-dashboard"></i> Overview <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="index.html#">Reports</a>
@@ -56,38 +59,33 @@
                 <li class="nav-item">
                     <a class="nav-link" href="index.html#">Export</a>
                 </li>
+
             </ul>
 
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#">Nav item</a>
+                    <a class="nav-link" href="#"><i class="fa fa-bars"></i> Nomencladores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#">Nav item again</a>
+                    <a class="nav-link <?=($id=="provincia"?"active":"")?>" href="<?=site_url()?>/admin/nomencladores/provincia/">&nbsp;&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i> Provincias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#">One more nav</a>
+                    <a class="nav-link <?=($id=="zona"?"active":"")?>" href="<?=site_url()?>/admin/nomencladores/zona/">&nbsp;&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i> Zonas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html#">Another nav item</a>
+                    <a class="nav-link <?=($id=="servicio"?"active":"")?>" href="<?=site_url()?>/admin/nomencladores/servicio/">&nbsp;&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i> Sevicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?=($id=="categoria"?"active":"")?>" href="<?=site_url()?>/admin/nomencladores/categoria/">&nbsp;&nbsp;&nbsp;<i class="fa  fa-angle-double-right"></i> Categor&iacute;as</a>
                 </li>
             </ul>
 
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#">Nav item again</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#">One more nav</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#">Another nav item</a>
-                </li>
-            </ul>
+
         </nav>
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-            <h1>Dashboard</h1>
+            <h3 style="border-bottom: 1px solid #eee;"><?=$subtitle?></h3>
+            <?=$view?>
         </main>
     </div>
 </div>
