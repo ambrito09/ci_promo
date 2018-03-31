@@ -567,6 +567,11 @@ hr {
      margin-bottom: 10px !important;
  }
 
+.margin-right-5
+{
+    margin-right: 5px !important;
+}
+
  /* Slider */
 .slider-item{
     border: 1px solid #E1E1E1;

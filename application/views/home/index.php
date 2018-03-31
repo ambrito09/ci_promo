@@ -15,7 +15,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/eva.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/eva.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -39,7 +39,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -63,7 +63,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -87,7 +87,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -111,7 +111,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/eva.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/eva.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -135,7 +135,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -159,7 +159,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/eva.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/eva.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -183,7 +183,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
@@ -207,7 +207,7 @@
                             <div class="img-overlay">
                                 <a href="#" class="btn btn-green rounded">Details</a>
                             </div>
-                            <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-responsive" alt="a" />
+                            <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-fluid" alt="a" />
                         </div>
                         <div class="slider-main-detail">
                             <div class="slider-detail">
