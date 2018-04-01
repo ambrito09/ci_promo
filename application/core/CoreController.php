@@ -35,6 +35,13 @@ class CoreController extends CI_Controller{
             'view' => ''
         );
         $this->load->vars($this->template);
+        if($this->session->userdata("lang") != ''){
+            $this->cargaIdioma($this->session->userdata("lang"));
+        }
+        else {
+            $this->session->set_userdata('lang', 'it');
+            $this->cargaIdioma("it");
+        }
     }
 
     /**
@@ -95,8 +102,8 @@ class CoreController extends CI_Controller{
     }
 
     public function cargaIdioma($idioma) {
-        if($idioma == 'es')
-            $this->lang->load("ui", "spanish");
+        if($idioma == 'it')
+            $this->lang->load("ui", "italian");
         else
             $this->lang->load("ui", "english");
     }

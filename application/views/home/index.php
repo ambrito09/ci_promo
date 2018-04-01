@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 margin-bottom-10">
             <div class="form-inline">
-                <h2>VIP</h2>
+                <h2><?=$this->lang->line('vip_title')?></h2>
                 <a class="left fa fa-chevron-left btn" href="javascript:;"></a>
                 <a class="right fa fa-chevron-right btn" href="javascript:;"></a>
             </div>
@@ -13,7 +13,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/eva.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -37,7 +37,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -61,7 +61,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -85,7 +85,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -109,7 +109,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/eva.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -133,7 +133,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -157,7 +157,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/eva.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -181,7 +181,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/ryan.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -205,7 +205,7 @@
                     <div class="slider-item">
                         <div class="slider-image">
                             <div class="img-overlay">
-                                <a href="#" class="btn btn-green rounded">Details</a>
+                                <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                             </div>
                             <img src="<?=base_url()?>assets/img/avatar.jpg" class="img-fluid" alt="a" />
                         </div>
@@ -228,14 +228,14 @@
     </div>
 
     <div class="row margin-top-35 margin-bottom-10">
-        <h2>Anounces</h2>
+        <h2><?=$this->lang->line('announces_title')?></h2>
     </div>
     <div class="row">
         <div class="media">
             <div class="row">
                 <div class="media-img col-sm-4 col-md-3 col-lg-3">
                     <div class="img-overlay">
-                        <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded">Details</a>
+                        <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                     </div>
                     <img class="port-image" src="<?=base_url()?>assets/img/eva.jpg">
                 </div>
@@ -265,7 +265,7 @@
             <div class="row">
                 <div class="media-img col-sm-4 col-md-3 col-lg-3">
                     <div class="img-overlay">
-                        <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded">Details</a>
+                        <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                     </div>
                     <img class="port-image" src="<?=base_url()?>assets/img/ryan.jpg">
                 </div>
@@ -295,7 +295,7 @@
             <div class="row">
                 <div class="media-img col-sm-4 col-md-3 col-lg-3">
                     <div class="img-overlay">
-                        <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded">Details</a>
+                        <a href="<?=site_url('home/profile/1')?>" class="btn btn-green rounded"><?=$this->lang->line('details_title')?></a>
                     </div>
                     <img class="port-image" src="<?=base_url()?>assets/img/avatar.jpg">
                 </div>

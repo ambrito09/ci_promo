@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="<?=base_url()?>assets/img/favicon.png">
 
-    <title>Signin</title>
+    <title><?=$this->lang->line('login_page_title')?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
@@ -28,20 +28,20 @@
           <form data-parsley-validate>
             <h1>Login</h1>
             <div>
-              <input type="text" required="required" class="form-control" placeholder="Username" required="" />
+              <input type="text" required="required" class="form-control" placeholder="<?=$this->lang->line('username_placeholder')?>" required="" />
             </div>
             <div>
-              <input type="password" required="required" class="form-control" placeholder="Password" required="" />
+              <input type="password" required="required" class="form-control" placeholder="<?=$this->lang->line('password_placeholder')?>" required="" />
             </div>
             <div>
-			  <input type="submit" id="form1"  class="btn btn-default submit" value="Log in" />
-              <a class="reset_pass" href="#">Lost your password?</a>
+			  <input type="submit" id="form1"  class="btn btn-default submit" value="<?=$this->lang->line('login_button')?>" />
+              <a class="reset_pass" href="#"><?=$this->lang->line('lostpassword_link')?></a>
             </div>
             <div class="clearfix"></div>
             <div class="separator">
 
-              <p class="change_link">New to site?
-                <a href="<?=site_url("home/register")?>" class="to_register"> Create Account </a>
+              <p class="change_link"><?=$this->lang->line('newtosite_link')?>
+                <a href="<?=site_url("home/register")?>" class="to_register"> <?=$this->lang->line('createaccount_link')?>  </a>
               </p>
               <div class="clearfix"></div>
               <br />              

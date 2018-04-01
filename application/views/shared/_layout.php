@@ -34,10 +34,13 @@
     <!-- Menu -->
     <nav class="menu" id="theMenu">
         <div class="menu-wrap">
-            <h1 class="logo"><a href="index.html#home">LINK</a></h1>
+            <h1 class="logo"><a href="<?=site_url()?>"><?=$this->lang->line('site_name')?></a></h1>
             <i class="fa fa-arrow-right menu-close"></i>
-            <a href="<?=site_url()?>">Home</a>
-            <a href="<?=site_url("home/login")?>">Login</a>
+            <?php if ($this->session->userdata("logged") === TRUE){?>
+                <a href="<?=site_url("home/myprofile")?>"><?=$this->lang->line('link_myprofile')?></a>
+            <?php } else {?>
+                <a href="<?=site_url("home/login")?>"><?=$this->lang->line('link_login')?></a>
+            <?php }?>
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-dribbble"></i></a>
