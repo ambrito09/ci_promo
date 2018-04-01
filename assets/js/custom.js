@@ -1,5 +1,5 @@
 $(function(){
-window.Parsley.setLocale('es');
+window.Parsley.setLocale('en');
 $("#form1").click(function(){	
 	$('#email').parsley()
 	  .addAsyncValidator('remotevalidator', function (xhr) {
