@@ -4,6 +4,8 @@
 $lang['site_name'] = "Promotion";
 $lang['link_login'] = "Login";
 $lang['link_myprofile'] = "My User";
+$lang['link_lang_en'] = "English";
+$lang['link_lang_it'] = "Italian";
 /* HOME PAGE LINKS*/
 $lang['vip_title'] = "VIP";
 $lang['announces_title'] = "Announces";

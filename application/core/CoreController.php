@@ -83,17 +83,17 @@ class CoreController extends CI_Controller{
         return false;
     }
 
-    public function cambiarIdioma()
+    public function language()
     {
-        $nuevoIdioma = $this->uri->segment(3);
-        $this->cargaIdioma($nuevoIdioma);
+        $lang = $this->uri->segment(3);
+        $this->cargaIdioma($lang);
         $this->session->unset_userdata('lang');
-        $this->session->set_userdata("lang", $nuevoIdioma);
+        $this->session->set_userdata("lang", $lang);
         $var = explode('/', $_SERVER['HTTP_REFERER']);
-        if($var[5] == "iniciocontroller" && $var[6] == "intro"){
-            $url = $var[5]."/".$var[6]."/".$nuevoIdioma;
-            //if($var[4] == "iniciocontroller" && $var[5] == "intro"){
-            //    $url = $var[4]."/".$var[5]."/".$nuevoIdioma;
+        /*if($var[5] == "home" && ($var[6] == "index" || $var[6] == "")){
+            $url = $var[5]."/".$var[6]."/".$nuevoIdioma;*/
+        if($var[4] == "home" && ($var[5] == "index" || $var[5] == "")){
+            $url = $var[4]."/".$var[5]."/".$lang;
             redirect($url);
         }
         else{

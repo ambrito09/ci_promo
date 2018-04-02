@@ -4,6 +4,8 @@
 $lang['site_name'] = "iPromotion";
 $lang['link_login'] = "iLogin";
 $lang['link_myprofile'] = "iMy User";
+$lang['link_lang_en'] = "iEnglish";
+$lang['link_lang_it'] = "iItalian";
 /* HOME PAGE LINKS*/
 $lang['vip_title'] = "iVIP";
 $lang['announces_title'] = "iAnnounces";
