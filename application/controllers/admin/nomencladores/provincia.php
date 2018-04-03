@@ -6,6 +6,7 @@ class Provincia extends CoreController {
     public function __construct()
     {
         parent::__construct();
+		$this->accesoAdmin();
 		$this->load->model("nomencladores/Mprovincia");
     }
 
@@ -20,33 +21,33 @@ class Provincia extends CoreController {
 		$data["cantidad"] = count($data["listado"]);
 		
 		$this->pagination->initialize(
-							array(
-									'base_url'		 => site_url('/admin/nomencladores/provincia/index/'),
-									'total_rows'	 => $total_rows,
-									'per_page'		 => $per_page,
-									'uri_segment'	 => 5,									
-									'full_tag_open'	 => '<ul class="pagination pagination-sm inline">',
-									'full_tag_close' => '</ul>',
-									'display_pages'  => true,
-									'first_tag_open' =>  '<li>',
-									'first_tag_close'=>  '</li>',
-									'cur_tag_open' => '<li><span>',
-									'num_tag_open' => '<li>',
-									'last_tag_open' => '<li>',
-									'cur_tag_close' => '</span></li>',
-									'num_tag_close' => '</li>',
-									'last_tag_close' => '</li>',
-									'num_links' => 1,
-									'use_page_numbers' => true,
-									'first_link'=> '&laquo;',
-									'last_link'=> '&raquo;',
-									'prev_link' => false,
-									'next_link' => false
-									
-									)								
-								);
+            array(
+                'base_url'		 => site_url('/admin/nomencladores/provincia/index/'),
+                'total_rows'	 => $total_rows,
+                'per_page'		 => $per_page,
+                'uri_segment'	 => 5,
+                'full_tag_open'	 => '<ul class="pagination pagination-sm inline">',
+                'full_tag_close' => '</ul>',
+                'display_pages'  => true,
+                'first_tag_open' =>  '<li>',
+                'first_tag_close'=>  '</li>',
+                'cur_tag_open' => '<li><span>',
+                'num_tag_open' => '<li>',
+                'last_tag_open' => '<li>',
+                'cur_tag_close' => '</span></li>',
+                'num_tag_close' => '</li>',
+                'last_tag_close' => '</li>',
+                'num_links' => 1,
+                'use_page_numbers' => true,
+                'first_link'=> '&laquo;',
+                'last_link'=> '&raquo;',
+                'prev_link' => false,
+                'next_link' => false
+            )
+        );
 		$data['pagination'] = $this->pagination->create_links();
 		$data["id"] = "provincia";
+		$data["titulo"] = "Nomencladores";
 		$data["subtitle"] = "Provincias";
         $this->template['view'] .= $this->load->view("admin/nomencladores/provincia/index",$data, true);
         $this->loadAdmin();
@@ -62,11 +63,9 @@ class Provincia extends CoreController {
 			$this->Mprovincia->insertar(array("value"=>$valor));
 			redirect("admin/nomencladores/provincia");			
 		}
-		
-		
-		$this->template['view'] .= $this->load->view("admin/nomencladores/provincia/add", array("id"=>"provincia","subtitle"=>"Provincias"), true);
+
+		$this->template['view'] .= $this->load->view("admin/nomencladores/provincia/add", array("id"=>"provincia","titulo"=>"Nomencladores","subtitle"=>"Provincias"), true);
         $this->loadAdmin();
-		
 	}
 	
 	public function edit(){
@@ -86,7 +85,7 @@ class Provincia extends CoreController {
 			exit;
 		}
 		$result = $this->Mprovincia->mostrarProvinciaxId(array("id"=>$id));
-		$this->template['view'] .= $this->load->view("admin/nomencladores/provincia/edit", array("id"=>"provincia","subtitle"=>"Provincias","result"=>$result), true);
+		$this->template['view'] .= $this->load->view("admin/nomencladores/provincia/edit", array("id"=>"provincia","titulo"=>"Nomencladores","subtitle"=>"Provincias","result"=>$result), true);
         $this->loadAdmin();
 	}
 	

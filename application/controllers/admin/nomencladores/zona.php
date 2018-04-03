@@ -6,6 +6,7 @@ class Zona extends CoreController {
     public function __construct()
     {
         parent::__construct();
+		$this->accesoAdmin();
 		$this->load->model("nomencladores/Mzona");
 		$this->load->model("nomencladores/Mprovincia");
     }
@@ -25,33 +26,33 @@ class Zona extends CoreController {
 		$data["cantidad"] = count($data["listado"]);
 		
 		$this->pagination->initialize(
-							array(
-									'base_url'		 => site_url('/admin/nomencladores/zona/index/'),
-									'total_rows'	 => $total_rows,
-									'per_page'		 => $per_page,
-									'uri_segment'	 => 5,									
-									'full_tag_open'	 => '<ul class="pagination pagination-sm inline">',
-									'full_tag_close' => '</ul>',
-									'display_pages'  => true,
-									'first_tag_open' =>  '<li>',
-									'first_tag_close'=>  '</li>',
-									'cur_tag_open' => '<li><span>',
-									'num_tag_open' => '<li>',
-									'last_tag_open' => '<li>',
-									'cur_tag_close' => '</span></li>',
-									'num_tag_close' => '</li>',
-									'last_tag_close' => '</li>',
-									'num_links' => 1,
-									'use_page_numbers' => true,
-									'first_link'=> '&laquo;',
-									'last_link'=> '&raquo;',
-									'prev_link' => false,
-									'next_link' => false
-									
-									)								
-								);
+            array(
+                'base_url'		 => site_url('/admin/nomencladores/zona/index/'),
+                'total_rows'	 => $total_rows,
+                'per_page'		 => $per_page,
+                'uri_segment'	 => 5,
+                'full_tag_open'	 => '<ul class="pagination pagination-sm inline">',
+                'full_tag_close' => '</ul>',
+                'display_pages'  => true,
+                'first_tag_open' =>  '<li>',
+                'first_tag_close'=>  '</li>',
+                'cur_tag_open' => '<li><span>',
+                'num_tag_open' => '<li>',
+                'last_tag_open' => '<li>',
+                'cur_tag_close' => '</span></li>',
+                'num_tag_close' => '</li>',
+                'last_tag_close' => '</li>',
+                'num_links' => 1,
+                'use_page_numbers' => true,
+                'first_link'=> '&laquo;',
+                'last_link'=> '&raquo;',
+                'prev_link' => false,
+                'next_link' => false
+            )
+        );
 		$data['pagination'] = $this->pagination->create_links();
 		$data["id"] = "zona";
+		$data["titulo"] = "Nomencladores";
 		$data["subtitle"] = "Zonas";
         $this->template['view'] .= $this->load->view("admin/nomencladores/zona/index",$data, true);
         $this->loadAdmin();
@@ -69,11 +70,10 @@ class Zona extends CoreController {
 			redirect("admin/nomencladores/zona");			
 		}
 		
-		 $result = $this->Mprovincia->listaProvincia();
+        $result = $this->Mprovincia->listaProvincia();
 		
-		$this->template['view'] .= $this->load->view("admin/nomencladores/zona/add", array("id"=>"zona","subtitle"=>"Zonas","result"=>$result), true);
+		$this->template['view'] .= $this->load->view("admin/nomencladores/zona/add", array("id"=>"zona","titulo"=>"Nomencladores","subtitle"=>"Zonas","result"=>$result), true);
         $this->loadAdmin();
-		
 	}
 	
 	public function edit(){
@@ -94,8 +94,8 @@ class Zona extends CoreController {
 			exit;
 		}
 		$result = $this->Mzona->mostrarzonaxId(array("id"=>$id));
-		 $listado = $this->Mprovincia->listaProvincia();
-		$this->template['view'] .= $this->load->view("admin/nomencladores/zona/edit", array("id"=>"zona","subtitle"=>"Zonas","result"=>$result,"listado"=>$listado), true);
+        $listado = $this->Mprovincia->listaProvincia();
+		$this->template['view'] .= $this->load->view("admin/nomencladores/zona/edit", array("id"=>"zona","titulo"=>"Nomencladores","subtitle"=>"Zonas","result"=>$result,"listado"=>$listado), true);
         $this->loadAdmin();
 	}
 	

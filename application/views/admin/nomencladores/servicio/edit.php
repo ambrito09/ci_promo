@@ -1,31 +1,31 @@
+<!--  ddd -->
 <div class="row">
-<div class="col-md-6">
-                            <!-- general form elements -->
-                            <div class="box box-primary">
-                                
-                                <!-- form start -->
-                                <form action="<?=site_url("admin/nomencladores/servicio/edit/")?>" method="post" autocomplete="off" role="form">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="valor">Valor</label>
-                                            <input type="text" name="valor" value="<?=($result->value)?>" class="form-control" id="valor"/>
-											<input type="hidden" name="id" value="<?=($result->id)?>" />
-                                        </div>                                        
-                                    </div><!-- /.box-body -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_content">
 
-                                    <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                                    </div>
-                                </form>
-                            </div><!-- /.box -->
+                  <form data-parsley-validate action="<?=site_url("admin/nomencladores/servicio/edit/")?>" class="form-horizontal form-label-left" method="post" novalidate>
 
-                            <!-- Form Element sizes -->
-                            
+                    <span class="section">Editar servicio</span>
 
-                            
+                    <div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="valor">Valor <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="valor" class="form-control col-md-7 col-xs-12" name="valor" value="<?=($result->value)?>" placeholder="Servicio" required="required" type="text">
+                        <input type="hidden" name="id" value="<?=($result->id)?>" />
+					  </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-md-offset-3">
+                        <a href="<?=site_url("admin/nomencladores/servicio/")?>" class="btn btn-primary">Cancel</a>
+                        <button  type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+                  </form>
 
-                            <!-- Input addon -->
-                            
-
-                        </div>
-</div>
+                </div>
+              </div>
+            </div>
+          </div>

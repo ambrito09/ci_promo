@@ -1,42 +1,45 @@
+<!--  ddd -->
 <div class="row">
-<div class="col-md-6">
-                            <!-- general form elements -->
-                            <div class="box box-primary">
-                                
-                                <!-- form start -->
-                                <form action="<?=site_url("admin/nomencladores/zona/edit/")?>" method="post" autocomplete="off" role="form">
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="valor">Valor</label>
-                                            <input type="text" name="valor" value="<?=($result->value)?>" class="form-control" id="valor"/>
-											<input type="hidden" name="id" value="<?=($result->id)?>" />
-                                        </div>
-										<div class="form-group">
-                                            <label for="valor">Provincia</label>                                            
-											<select name="provincia" class="form-control">
-												<option>&laquo;Seleccionar&raquo;</option>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_content">
+
+                  <form data-parsley-validate action="<?=site_url("admin/nomencladores/zona/edit/")?>" class="form-horizontal form-label-left" method="post" novalidate>
+
+                    <span class="section">Editar zona</span>
+
+                    <div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="valor">Valor <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="valor" class="form-control col-md-7 col-xs-12" name="valor" value="<?=($result->value)?>" placeholder="Zona" required="required" type="text">
+                        <input type="hidden" name="id" value="<?=($result->id)?>" />
+					  </div>
+                    </div>
+					<div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="provincia">Provincia <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select name="provincia" class="form-control">
+												<option value="">&laquo;Seleccionar&raquo;</option>
 												<?php 
 													foreach($listado as $l){													
 													?>														
 														<option <?=($result->id_provincia==$l->id?"selected='selected'":"")?> value="<?=$l->id?>"><?=$l->value?></option>
 													<?php }?>												
 											</select>
-                                        </div>                                         
-                                    </div><!-- /.box-body -->
+					  </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-md-offset-3">
+                        <a href="<?=site_url("admin/nomencladores/zona/")?>" class="btn btn-primary">Cancel</a>
+                        <button  type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+                  </form>
 
-                                    <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                                    </div>
-                                </form>
-                            </div><!-- /.box -->
-
-                            <!-- Form Element sizes -->
-                            
-
-                            
-
-                            <!-- Input addon -->
-                            
-
-                        </div>
-</div>
+                </div>
+              </div>
+            </div>
+          </div>

@@ -53,6 +53,5 @@ class Mregister extends CoreModel {
 		$query = $this->db->get('zona'); 
 		return $query->num_rows();
 	}
-	
 }
 ?>

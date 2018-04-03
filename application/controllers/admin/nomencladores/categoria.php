@@ -6,6 +6,7 @@ class Categoria extends CoreController {
     public function __construct()
     {
         parent::__construct();
+		$this->accesoAdmin();
 		$this->load->model("nomencladores/Mcategoria");
     }
 
@@ -15,38 +16,37 @@ class Categoria extends CoreController {
 		$per_page = 5;
 		$offset = ($this->uri->segment(5, 0)!=null?($this->uri->segment(5, 0)-1)*$per_page:0);
 		$total_rows = $this->Mcategoria->cantidad();
-		//print_r($offset);exit;
 		$data["listado"] = $this->Mcategoria->listacategoria($per_page,$offset);
 		$data["cantidad"] = count($data["listado"]);
 		
 		$this->pagination->initialize(
-							array(
-									'base_url'		 => site_url('/admin/nomencladores/categoria/index/'),
-									'total_rows'	 => $total_rows,
-									'per_page'		 => $per_page,
-									'uri_segment'	 => 5,									
-									'full_tag_open'	 => '<ul class="pagination pagination-sm inline">',
-									'full_tag_close' => '</ul>',
-									'display_pages'  => true,
-									'first_tag_open' =>  '<li>',
-									'first_tag_close'=>  '</li>',
-									'cur_tag_open' => '<li><span>',
-									'num_tag_open' => '<li>',
-									'last_tag_open' => '<li>',
-									'cur_tag_close' => '</span></li>',
-									'num_tag_close' => '</li>',
-									'last_tag_close' => '</li>',
-									'num_links' => 1,
-									'use_page_numbers' => true,
-									'first_link'=> '&laquo;',
-									'last_link'=> '&raquo;',
-									'prev_link' => false,
-									'next_link' => false
-									
-									)								
-								);
+            array(
+                'base_url'		 => site_url('/admin/nomencladores/categoria/index/'),
+                'total_rows'	 => $total_rows,
+                'per_page'		 => $per_page,
+                'uri_segment'	 => 5,
+                'full_tag_open'	 => '<ul class="pagination pagination-sm inline">',
+                'full_tag_close' => '</ul>',
+                'display_pages'  => true,
+                'first_tag_open' =>  '<li>',
+                'first_tag_close'=>  '</li>',
+                'cur_tag_open' => '<li><span>',
+                'num_tag_open' => '<li>',
+                'last_tag_open' => '<li>',
+                'cur_tag_close' => '</span></li>',
+                'num_tag_close' => '</li>',
+                'last_tag_close' => '</li>',
+                'num_links' => 1,
+                'use_page_numbers' => true,
+                'first_link'=> '&laquo;',
+                'last_link'=> '&raquo;',
+                'prev_link' => false,
+                'next_link' => false
+            )
+        );
 		$data['pagination'] = $this->pagination->create_links();
 		$data["id"] = "categoria";
+		$data["titulo"] = "Nomencladores";
 		$data["subtitle"] = "Categor&iacute;as";
         $this->template['view'] .= $this->load->view("admin/nomencladores/categoria/index",$data, true);
         $this->loadAdmin();
@@ -62,11 +62,9 @@ class Categoria extends CoreController {
 			$this->Mcategoria->insertar(array("value"=>$valor));
 			redirect("admin/nomencladores/categoria");			
 		}
-		
-		
-		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/add", array("id"=>"categoria","subtitle"=>"Categor&iacute;as"), true);
+
+		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/add", array("id"=>"categoria","titulo"=>"Nomencladores","subtitle"=>"Categor&iacute;as"), true);
         $this->loadAdmin();
-		
 	}
 	
 	public function edit(){
@@ -86,7 +84,7 @@ class Categoria extends CoreController {
 			exit;
 		}
 		$result = $this->Mcategoria->mostrarcategoriaxId(array("id"=>$id));
-		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/edit", array("id"=>"categoria","subtitle"=>"Categor&iacute;as","result"=>$result), true);
+		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/edit", array("id"=>"categoria","titulo"=>"Nomencladores","subtitle"=>"Categor&iacute;as","result"=>$result), true);
         $this->loadAdmin();
 	}
 	

@@ -55,12 +55,11 @@ class CoreController extends CI_Controller{
 
     public function loadAdmin(){
         /*Load the site's admin template with the view defined in the controller class, in 'VIEW' var.*/
-        $this->load->view('shared/_adminlayout', $this->template);
+        $this->load->view('shared/nuevolayout', $this->template);
     }
 
     public function accesoAdmin(){
-        //if(!isset($_SESSION['loggedIn']))
-        if($this->session->userdata('loggedIn')===false)
+        if (empty($this->session->userdata('nombreS')))
             redirect("admin/home");
     }
 
@@ -90,10 +89,10 @@ class CoreController extends CI_Controller{
         $this->session->unset_userdata('lang');
         $this->session->set_userdata("lang", $lang);
         $var = explode('/', $_SERVER['HTTP_REFERER']);
-        /*if($var[5] == "home" && ($var[6] == "index" || $var[6] == "")){
-            $url = $var[5]."/".$var[6]."/".$nuevoIdioma;*/
-        if($var[4] == "home" && ($var[5] == "index" || $var[5] == "")){
-            $url = $var[4]."/".$var[5]."/".$lang;
+        if($var[5] == "home" && ($var[6] == "index" || $var[6] == "")){
+            $url = $var[5]."/".$var[6]."/".$lang;
+        /*if($var[4] == "home" && ($var[5] == "index" || $var[5] == "")){
+            $url = $var[4]."/".$var[5]."/".$lang;*/
             redirect($url);
         }
         else{

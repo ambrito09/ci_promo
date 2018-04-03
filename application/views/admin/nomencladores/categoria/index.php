@@ -6,7 +6,7 @@
 <div class="col-md-12" style="text-align:right;">
 <?=$pagination?>
 </div>
-<div class="box-body table-responsive no-padding">
+<div class="box-body table-responsive no-padding col-md-12" style="overflow-x: hidden;" >
                                     <table class="table table-hover">
                                         <tr>
                                             <th>ID</th>
