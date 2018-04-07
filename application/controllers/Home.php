@@ -6,6 +6,7 @@ class Home extends CoreController {
     {
         parent::__construct();
         $this->load->model("home/Mregister");
+        $this->load->model("seguridad/Musuario", "usuario");
     }
 
 	public function index()
@@ -27,7 +28,42 @@ class Home extends CoreController {
 
     public function login()
     {
-        $this->load->view("home/login", array());
+        if ($this->isPostBack())
+        {
+            $email = trim($this->input->post('email', true));
+            $pass = trim($this->input->post('password', true));
+
+            $data = array(
+                "email" => $email,
+                "clave" => md5($pass)
+            );
+
+            $result = $this->usuario->mostrarusuarioxId($data);
+
+            if ($result != null)
+            {
+                $datos_session = array(
+                    "nombreS"=>$result->nombre_completo,
+                    "userS"=>$result->usuario,
+                    "rolS"=>$result->rol,
+                    "idU"=>$result->ids,
+                    "emailS"=>$result->email,
+                    "statusS"=>$result->status,
+                    "loggedIn"=>true
+                );
+                $this->session->set_userdata($datos_session);
+                redirect(site_url());
+            }
+            else
+            {
+                $this->session->set_flashdata("msg", lang('wrong_user'));
+                $this->load->view("home/login", array());
+            }
+        }
+        else
+        {
+            $this->load->view("home/login", array());
+        }
 	}
 
     public function activacion(){

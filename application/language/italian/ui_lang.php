@@ -18,6 +18,7 @@ $lang['login_button'] = "iSign In";
 $lang['lostpassword_link'] = "iLost your password?";
 $lang['newtosite_link'] = "iNew to site?";
 $lang['createaccount_link'] = "iCreate Account";
+$lang['wrong_user'] = "iInvalid user data. Please try again.";
 /* REGISTRATION PAGE */
 $lang['registrationpage_title'] = "iUser Registration";
 $lang['fullname_placeholder'] = "iFull name";

@@ -18,14 +18,21 @@
 </head>
 
 <body>
+<form action="<?= site_url("home/login") ?>" method="post">
     <div class="container">
         <div class="card card-container">
             <img id="profile-img" class="profile-img-card" src="<?=base_url()?>assets/img/avatar_2x.png" />
             <p id="profile-name" class="profile-name-card"></p>
+            <?php
+            if($this->session->flashdata("msg")){?>
+                <div class="alert alert-danger" role="alert">
+                    <?=$this->session->flashdata("msg") ?>
+                </div>
+            <?php } ?>
             <form class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" required="required" class="form-control" placeholder="<?=$this->lang->line('username_placeholder')?>"/>
-                <input type="password" required="required" class="form-control" placeholder="<?=$this->lang->line('password_placeholder')?>"/>
+                <input type="text" name="email" required="required" class="form-control" placeholder="<?=$this->lang->line('username_placeholder')?>"/>
+                <input type="password" name="password" required="required" class="form-control" placeholder="<?=$this->lang->line('password_placeholder')?>"/>
                 <div id="remember" class="checkbox">
                     <label>
                         <input type="checkbox" value="remember-me"> Remember me
@@ -41,6 +48,7 @@
             </a>
         </div><!-- /card-container -->
     </div><!-- /container -->
+</form>
 <script src="<?=base_url()?>assets/js/jquery.3.2.1.min.js"></script>
 <script src="<?=base_url()?>assets/js/parsley.js"></script>
 <script src="<?=base_url()?>assets/js/custom.js"></script>
