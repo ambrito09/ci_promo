@@ -2,6 +2,18 @@
 
 <div class="container margin-top-20">
     <div class="row">
+        <div class="col-12 col-sm-12 col-md-12">
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page">
+                        <a href="<?=site_url()?>"><?=$this->lang->line('breadcrumb_home')?></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page"><?=$this->lang->line('breadcrumb_profile')?></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="row margin-bottom-10" id="productMain">
                 <div class="col-sm-6">

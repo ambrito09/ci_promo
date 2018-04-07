@@ -1,5 +1,14 @@
 <div class="container margin-top-20">
     <div class="row">
+        <div class="col-12 col-sm-12 col-md-12">
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page"><?=$this->lang->line('breadcrumb_home')?></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12 margin-bottom-10">
             <div class="form-inline">
                 <h2><?=$this->lang->line('vip_title')?></h2>
