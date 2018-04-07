@@ -36,7 +36,7 @@
         <div class="menu-wrap">
             <h1 class="logo"><a href="<?=site_url()?>"><?=$this->lang->line('site_name')?></a></h1>
             <i class="fa fa-arrow-right menu-close"></i>
-            <?php if ($this->session->userdata("logged") === TRUE){?>
+            <?php if ($this->session->userdata("loggedIn") === TRUE){?>
                 <a href="<?=site_url("home/myprofile")?>"><?=$this->lang->line('link_myprofile')?></a>
             <?php } else {?>
                 <a href="<?=site_url("home/login")?>"><?=$this->lang->line('link_login')?></a>
