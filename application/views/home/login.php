@@ -17,43 +17,30 @@
     <link href="<?=base_url()?>assets/css/signin.css" rel="stylesheet">
 </head>
 
-<body style="background:#F7F7F7;">
-  <div class="">
-    <a class="hiddenanchor" id="toregister"></a>
-    <a class="hiddenanchor" id="tologin"></a>
-
-    <div id="wrapper">
-      <div id="login" class="animate form">
-        <section class="login_content">
-          <form data-parsley-validate>
-            <h1>Login</h1>
-            <div>
-              <input type="text" required="required" class="form-control" placeholder="<?=$this->lang->line('username_placeholder')?>" required="" />
-            </div>
-            <div>
-              <input type="password" required="required" class="form-control" placeholder="<?=$this->lang->line('password_placeholder')?>" required="" />
-            </div>
-            <div>
-			  <input type="submit" id="form1"  class="btn btn-default submit" value="<?=$this->lang->line('login_button')?>" />
-              <a class="reset_pass" href="#"><?=$this->lang->line('lostpassword_link')?></a>
-            </div>
-            <div class="clearfix"></div>
-            <div class="separator">
-
-              <p class="change_link"><?=$this->lang->line('newtosite_link')?>
-                <a href="<?=site_url("home/register")?>" class="to_register"> <?=$this->lang->line('createaccount_link')?>  </a>
-              </p>
-              <div class="clearfix"></div>
-              <br />              
-            </div>
-          </form>
-          <!-- form -->
-        </section>
-        <!-- content -->
-      </div>
-
-    </div>
-  </div>
+<body>
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="<?=base_url()?>assets/img/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" required="required" class="form-control" placeholder="<?=$this->lang->line('username_placeholder')?>"/>
+                <input type="password" required="required" class="form-control" placeholder="<?=$this->lang->line('password_placeholder')?>"/>
+                <div id="remember" class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+            </form><!-- /form -->
+            <a href="#" class="forgot-password">
+                <?=$this->lang->line('lostpassword_link')?>
+            </a>
+            <a href="<?=site_url("home/register")?>" class="forgot-password">
+                <?=$this->lang->line('createaccount_link')?>
+            </a>
+        </div><!-- /card-container -->
+    </div><!-- /container -->
 <script src="<?=base_url()?>assets/js/jquery.3.2.1.min.js"></script>
 <script src="<?=base_url()?>assets/js/parsley.js"></script>
 <script src="<?=base_url()?>assets/js/custom.js"></script>
