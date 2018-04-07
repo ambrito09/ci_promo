@@ -11,7 +11,7 @@ class Home extends CoreController {
 
 	public function index()
 	{
-        $this->template['view'] .= $this->load->view("home/index", array(), true);
+	    $this->template['view'] .= $this->load->view("home/index", array(), true);
         $this->loadView();
 	}
 
@@ -45,10 +45,11 @@ class Home extends CoreController {
                 $datos_session = array(
                     "nombreS"=>$result->nombre_completo,
                     "userS"=>$result->usuario,
-                    "rolS"=>$result->rol,
-                    "idU"=>$result->ids,
+                    "rolS"=>$result->id_rol,
+                    "idU"=>$result->id,
                     "emailS"=>$result->email,
                     "statusS"=>$result->status,
+                    "puntosS"=>$result->cant_puntos,
                     "loggedIn"=>true
                 );
                 $this->session->set_userdata($datos_session);
@@ -144,6 +145,7 @@ class Home extends CoreController {
                     "usuario"         => $userid,
                     "clave"           => $password,
                     "email"           => $email,
+                    "status"          => 1,
                     "activacion"      => $activation
                 );
 
@@ -163,6 +165,27 @@ class Home extends CoreController {
                 }
 
                 echo $this->email->print_debugger();*/
+
+                unset($data['activacion']);
+                $result = $this->usuario->mostrarusuarioxId($data);
+
+                if ($result != null)
+                {
+                    $datos_session = array(
+                        "nombreS"=>$result->nombre_completo,
+                        "userS"=>$result->usuario,
+                        "rolS"=>$result->id_rol,
+                        "idU"=>$result->id,
+                        "emailS"=>$result->email,
+                        "statusS"=>$result->status,
+                        "puntosS"=>$result->cant_puntos,
+                        "loggedIn"=>true
+                    );
+                    $this->session->set_userdata($datos_session);
+                    redirect(site_url());
+                }
+
+                redirect(site_url());
             }
         }
         $this->load->view("home/register", array());
