@@ -5,11 +5,16 @@ class Home extends CoreController {
     public function __construct()
     {
         parent::__construct();
+
 		$this->load->model("admin/Madmin");		
     }
 
 	public function index()
 	{
+	    if ($this->session->userdata("loggedIn") != FALSE && $this->session->userdata("code") == "admin")
+        {
+            redirect(site_url("admin/seguridad/dashboard"));
+        }
 		$this->load->view("admin/login", array());
 	}
 	
@@ -41,6 +46,10 @@ class Home extends CoreController {
 				redirect("admin/seguridad/dashboard/index");
 			}
 		}
+		else
+        {
+            $this->load->view("admin/login", array());
+        }
 	}
 	
 	public function logout(){

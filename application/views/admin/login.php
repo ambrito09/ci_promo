@@ -14,7 +14,7 @@
     <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?=base_url()?>assets/css/signin.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/css/login.css" rel="stylesheet">
 </head>
 
 <body style="background:#F7F7F7;">
