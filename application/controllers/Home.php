@@ -77,7 +77,6 @@ class Home extends CoreController {
     }
 
     public function emailisused(){
-        //echo $this->uri->segment(3, 0);exit;
         if($this->isPostBack()){
             $email = trim($this->input->post('email', true));
             $exist = $this->Mregister->emailisused($email);
@@ -137,8 +136,6 @@ class Home extends CoreController {
               //Establecemos esta configuración
                 $this->email->initialize($config);*/
 
-
-
                 $password=md5($password); // encrypted password
                 $activation=md5($email.time()); // encrypted email+timestamp
 
@@ -169,5 +166,10 @@ class Home extends CoreController {
             }
         }
         $this->load->view("home/register", array());
+    }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect(site_url());
     }
 }

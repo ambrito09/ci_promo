@@ -3,6 +3,7 @@
 /* MENU LINKS */
 $lang['site_name'] = "iPromotion";
 $lang['link_login'] = "iLogin";
+$lang['link_logout'] = "iLogout";
 $lang['link_myprofile'] = "iMy User";
 $lang['link_lang_en'] = "iEnglish";
 $lang['link_lang_it'] = "iItalian";

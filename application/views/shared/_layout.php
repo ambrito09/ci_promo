@@ -38,6 +38,7 @@
             <i class="fa fa-arrow-right menu-close"></i>
             <?php if ($this->session->userdata("loggedIn") === TRUE){?>
                 <a href="<?=site_url("home/myprofile")?>"><?=$this->lang->line('link_myprofile')?></a>
+                <a href="<?=site_url("home/logout")?>"><?=$this->lang->line('link_logout')?></a>
             <?php } else {?>
                 <a href="<?=site_url("home/login")?>"><?=$this->lang->line('link_login')?></a>
             <?php }?>
