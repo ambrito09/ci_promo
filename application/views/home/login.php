@@ -40,10 +40,10 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             </form><!-- /form -->
-            <a href="#" class="forgot-password">
+            <a href="#" class="forgot-password text-right">
                 <?=$this->lang->line('lostpassword_link')?>
             </a>
-            <a href="<?=site_url("home/register")?>" class="forgot-password">
+            <a href="<?=site_url("home/register")?>" class="forgot-password text-right">
                 <?=$this->lang->line('createaccount_link')?>
             </a>
         </div><!-- /card-container -->

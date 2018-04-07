@@ -138,4 +138,26 @@ body, html {
 .forgot-password:active,
 .forgot-password:focus{
   color: rgb(12, 97, 33);
+  text-decoration: none;
+}
+
+input.parsley-error, textarea.parsley-error, select.parsley-error {
+  background: #FAEDEC;
+  border: 1px solid #E85445 !important;
+  margin-bottom: 0px !important;
+}
+ul.parsley-errors-list {
+  list-style: none;
+  color: #E74C3C;
+  padding-left: 0;
+  text-align: left;
+}
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+ul.parsley-errors-list li{
+  list-style: none;
+  color: #E74C3C;
+  font-size: 12px;
 }
