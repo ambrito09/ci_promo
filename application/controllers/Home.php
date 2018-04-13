@@ -22,6 +22,8 @@ class Home extends CoreController {
             $profileID = 0;
         }
 
+
+
         $this->template['view'] .= $this->load->view("home/profile", array(), true);
         $this->loadView();
 	}
@@ -146,6 +148,7 @@ class Home extends CoreController {
                     "clave"           => $password,
                     "email"           => $email,
                     "status"          => 1,
+                    "id_rol"          => 1,
                     "activacion"      => $activation
                 );
 
