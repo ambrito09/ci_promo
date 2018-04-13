@@ -7,8 +7,11 @@ $lang['link_logout'] = "iLogout";
 $lang['link_myprofile'] = "iMy User";
 $lang['link_lang_en'] = "iEnglish";
 $lang['link_lang_it'] = "iItalian";
+$lang['link_getpoints'] = "iGet Points";
+$lang['link_viewtransactions'] = "iMy Transactions";
 $lang['breadcrumb_home'] = "iHome";
 $lang['breadcrumb_profile'] = "iProfile";
+$lang['breadcrumb_myprofile'] = "iMy Profile";
 /* HOME PAGE LINKS*/
 $lang['vip_title'] = "iVIP";
 $lang['announces_title'] = "iAnnounces";
@@ -29,6 +32,12 @@ $lang['user_placeholder'] = "iUser";
 $lang['email_placeholder'] = "iEmail";
 $lang['retype_placeholder'] = "iRetype password";
 $lang['register_button'] = "iRegister";
+/* PROFILE UI */
+$lang['profile_points'] = "iMy Points";
+$lang['profile_status'] = "iAccount Status";
+$lang['profile_status_active'] = "iActive";
+$lang['profile_status_inactive'] = "iInactive";
+$lang['profile_visits'] = "iProfile Visits";
 
 /* End of file messages.php */
 /* Location: ./system/application/language/italian/messages.php */
