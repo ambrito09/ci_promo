@@ -32,7 +32,8 @@ class CoreController extends CI_Controller{
             'viewTitle' => '',
             'keywords' => '',
             'description' => '',
-            'view' => ''
+            'view' => '',
+            'menu' => $this->loadMenu("_frontMenu")
         );
         $this->load->vars($this->template);
         if($this->session->userdata("lang") != ''){
@@ -105,5 +106,11 @@ class CoreController extends CI_Controller{
             $this->lang->load("ui", "italian");
         else
             $this->lang->load("ui", "english");
+    }
+
+    public function loadMenu($menu)
+    {
+        $this->cargaIdioma($this->session->userdata("lang"));
+        return $this->load->view("shared/$menu", array(), true);
     }
 }
