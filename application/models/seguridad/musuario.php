@@ -56,6 +56,12 @@ class Musuario extends CoreModel {
 			return true;
 		return false;
 	}
-	
+
+    public function getProfileVisitCount($profileID)
+    {
+        $query = $this->db->get_where("contador", array("id_usuario"=>$profileID));
+
+        return $query->num_rows();
+	}
 }
 ?>
