@@ -29,8 +29,7 @@ class Profile extends CoreController
         $this->cargaIdioma($this->session->userdata("lang"));
         $this->template["menu"] = $this->loadMenu("_profileMenu");
 
-        $user = $this->usuario->mostrarusuarioxId(array('id'=>$this->session->userdata("idU")));
-        $user->cant_visitas = $this->usuario->getProfileVisitCount($user->id);
+        $user = $this->_getUserData();
 
         $this->template["view"] = $this->load->view("profile/myprofile", array('user'=>$user), true);
         $this->loadView();
@@ -40,6 +39,20 @@ class Profile extends CoreController
     {
         $this->cargaIdioma($this->session->userdata("lang"));
         $this->template["menu"] = $this->loadMenu("_profileMenu");
-        $this->loadView("profile/myprofile", $this->template);
+
+        $data = array(
+            "user" => $user = $this->_getUserData()
+        );
+
+        $this->template["view"] = $this->load->view("profile/getpoints", $data, true);
+        $this->loadView();
+    }
+
+    public function _getUserData()
+    {
+        $user = $this->usuario->mostrarusuarioxId(array('id'=>$this->session->userdata("idU")));
+        $user->cant_visitas = $this->usuario->getProfileVisitCount($user->id);
+
+        return $user;
     }
 }

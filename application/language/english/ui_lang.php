@@ -12,6 +12,7 @@ $lang['link_viewtransactions'] = "My Transactions";
 $lang['breadcrumb_home'] = "Home";
 $lang['breadcrumb_profile'] = "Profile";
 $lang['breadcrumb_myprofile'] = "My Profile";
+$lang['breadcrumb_getpoints'] = "Get Points";
 /* HOME PAGE LINKS*/
 $lang['vip_title'] = "VIP";
 $lang['announces_title'] = "Announces";
@@ -38,6 +39,11 @@ $lang['profile_status'] = "Account Status";
 $lang['profile_status_active'] = "Active";
 $lang['profile_status_inactive'] = "Inactive";
 $lang['profile_visits'] = "Profile Visits";
+/* POINTS UI */
+$lang["points_info"] = "You have {points} points.";
+$lang["points_hdrpoints"] = "Points";
+$lang["points_hdrprice"] = "Price";
+$lang["points_buypoints"] = "Buy Points";
 
 /* End of file messages.php */
 /* Location: ./system/application/language/english/messages.php */
