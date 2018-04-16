@@ -35,33 +35,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($pointsOffers as $offer) :?>
                         <tr>
                             <th scope="row">
-                                <input type="radio" name="pointsOffer" id="pointsOffer1" value="1">
+                                <input type="radio" name="pointsOffer" id="pointsOffer1" value="<?=$offer->id?>">
                             </th>
-                            <td>10</td>
                             <td>
-                                &euro;1
+                                <?=$offer->puntos?>
+                            </td>
+                            <td>
+                                &euro;<?=$offer->precio?>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">
-                                <input type="radio" name="pointsOffer" id="pointsOffer2" value="10">
-                            </th>
-                            <td>50</td>
-                            <td>
-                                &euro;10
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <input type="radio" name="pointsOffer" id="pointsOffer3" value="50">
-                            </th>
-                            <td>100</td>
-                            <td>
-                                &euro;50
-                            </td>
-                        </tr>
+                    <?php endforeach;?>
                     </tbody>
                 </table>
             </div>

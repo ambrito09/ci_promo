@@ -39,6 +39,7 @@ $lang['profile_status'] = "iAccount Status";
 $lang['profile_status_active'] = "iActive";
 $lang['profile_status_inactive'] = "iInactive";
 $lang['profile_visits'] = "iProfile Visits";
+$lang['profile_publicidad'] = "iHas Public Profile?";
 /* POINTS UI */
 $lang["points_info"] = "iYou have {points} points.";
 $lang["points_hdrpoints"] = "iPoints";

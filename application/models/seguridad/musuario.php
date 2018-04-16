@@ -63,5 +63,12 @@ class Musuario extends CoreModel {
 
         return $query->num_rows();
 	}
+
+    public function getUserPublicidad($userID)
+    {
+        $query = $this->db->get_where("publicidad", array("id_usuario"=>$userID));
+
+        return $query->first_row();
+	}
 }
 ?>
