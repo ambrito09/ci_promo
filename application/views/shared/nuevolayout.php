@@ -94,6 +94,10 @@
                                     </li>
                                     <li><a href="<?=site_url()?>/admin/nomencladores/categoria/">Categorias</a>
                                     </li>
+                                    <li><a href="<?=site_url()?>/admin/nomencladores/tipocuenta/">Tipo de cuenta</a>
+                                    </li>
+                                    <li><a  href="<?=site_url()?>/admin/nomencladores/ofertaspuntos/">Ofertas de Puntos</a>
+                                    </li>
                                 </ul>
                             </li>
                             <!--<li><a><i class="fa fa-database"></i> Base de datos <span class="fa fa-chevron-down"></span></a>
@@ -110,6 +114,7 @@
                             </li>
                             <li><a><i class="fa fa-wrench"></i> Preferencias <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="display: none">
+
                                     <li><a  href="<?=site_url()?>/admin/preferencias/emailconfig/">E-mail</a>
                                     </li>
                                 </ul>
