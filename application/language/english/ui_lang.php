@@ -8,11 +8,13 @@ $lang['link_myprofile'] = "My User";
 $lang['link_lang_en'] = "English";
 $lang['link_lang_it'] = "Italian";
 $lang['link_getpoints'] = "Get Points";
+$lang['link_upgradeacc'] = "Upgrade Account";
 $lang['link_viewtransactions'] = "My Transactions";
 $lang['breadcrumb_home'] = "Home";
 $lang['breadcrumb_profile'] = "Profile";
 $lang['breadcrumb_myprofile'] = "My Profile";
 $lang['breadcrumb_getpoints'] = "Get Points";
+$lang['breadcrumb_upgrade'] = "Upgrade Account";
 /* HOME PAGE LINKS*/
 $lang['vip_title'] = "VIP";
 $lang['announces_title'] = "Announces";
@@ -45,6 +47,10 @@ $lang["points_info"] = "You have {points} points.";
 $lang["points_hdrpoints"] = "Points";
 $lang["points_hdrprice"] = "Price";
 $lang["points_buypoints"] = "Buy Points";
+/* UPGRADE UI */
+$lang["upgrade_hdrtype"] = "Account Type";
+$lang["upgrade_hdrprice"] = "Price";
+$lang["upgrade_btn"] = "Upgrade";
 
 /* End of file messages.php */
 /* Location: ./system/application/language/english/messages.php */

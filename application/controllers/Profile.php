@@ -50,7 +50,22 @@ class Profile extends CoreController
         $this->loadView();
     }
 
-    public function _getUserData()
+    public function upgrade()
+    {
+        $this->cargaIdioma($this->session->userdata("lang"));
+        $this->template["menu"] = $this->loadMenu("_profileMenu");
+
+        $this->load->model("nomencladores/Mtipocuenta", "tipocuenta");
+        $data = array(
+            "user" => $this->_getUserData(),
+            "accountTypes" => $this->tipocuenta->listatipocuenta()
+        );
+
+        $this->template["view"] = $this->load->view("profile/upgrade", $data, true);
+        $this->loadView();
+    }
+
+    private function _getUserData()
     {
         $user = $this->usuario->mostrarusuarioxId(array('id'=>$this->session->userdata("idU")));
         $user->cant_visitas = $this->usuario->getProfileVisitCount($user->id);

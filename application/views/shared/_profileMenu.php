@@ -3,6 +3,7 @@
 <?php if ($this->session->userdata("loggedIn")){?>
     <a href="<?=site_url("profile/myprofile")?>"><?=$this->lang->line('link_myprofile')?></a>
     <a href="<?=site_url("profile/getPoints")?>"><?=$this->lang->line('link_getpoints')?></a>
+    <a href="<?=site_url("profile/upgrade")?>"><?=$this->lang->line('link_upgradeacc')?></a>
     <!--a href="<?=site_url("profile/transactions")?>"><?=$this->lang->line('link_viewtransactions')?></a-->
     <a href="<?=site_url("home/logout")?>"><?=$this->lang->line('link_logout')?></a>
 <?php } ?>
