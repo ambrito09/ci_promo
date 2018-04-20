@@ -86,10 +86,7 @@
   </div>
   
   <div class="col-md-9 col-sm-9 col-xs-12">
-	<div class="col-md-12" style="border-bottom:1px solid #eee;margin-bottom: 10px;">
-		<div class="col-md-6">Nombre completo</div>
-		<div class="col-md-6"><?=$this->session->userdata('nombreS')?></div>
-	</div>
+
 	<div class="col-md-12" style="border-bottom:1px solid #eee;margin-bottom: 10px;">
 		<div class="col-md-6">Usuario</div>
 		<div class="col-md-6"><?=$this->session->userdata('userS')?></div>
@@ -105,6 +102,10 @@
 	<div class="col-md-12" style="border-bottom:1px solid #eee;margin-bottom: 10px;">
 		<div class="col-md-6">Rol</div>
 		<div class="col-md-6"><?=$this->session->userdata('rolS')?></div>
+	</div>
+		<div class="col-md-12" style="border-bottom:1px solid #eee;margin-bottom: 10px;">
+		<div class="col-md-6">Tipo de cuenta</div>
+		<div class="col-md-6"><?=$this->session->userdata('tipocuentaS')?></div>
 	</div>
   </div>
   <br/>

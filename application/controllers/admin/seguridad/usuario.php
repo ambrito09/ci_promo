@@ -9,17 +9,29 @@ class Usuario extends CoreController {
 		$this->accesoAdmin();
 		$this->load->model("seguridad/Musuario");
 		$this->load->model("seguridad/Mroles");
+		$this->load->model("nomencladores/Mtipocuenta");
     }
 
 	public function index()
 	{
-		$this->load->library('pagination');	
-		$per_page = 5;
-		$offset = ($this->uri->segment(5, 0)!=null?($this->uri->segment(5, 0)-1)*$per_page:0);
-		$total_rows = $this->Musuario->cantidad();
-		$data["listado"] = $this->Musuario->listausuarios($per_page,$offset);
+		$datos = array();
+		$data = array();
+		$pag = 0;
+		if($this->isPostBack()){
+			$usuario = trim($this->input->post('usuario', true));
+			$pag = trim($this->input->post('pag', true));
+			$datos["usuario"] = $usuario;
+			$data["usuario"] = $usuario;
+
+		}
+		$this->load->library('pagination');
+		$per_page = 15;
+		$offset = ($pag!=null?($pag-1)*$per_page:0);
+		$total_rows = $this->Musuario->cantidad($datos);
+		$data["listado"] = $this->Musuario->listausuarios($datos,$per_page,$offset);
 		for ($i=0;$i<count($data["listado"]);$i++){
 			$data["listado"][$i]->id_rol = $this->Mroles->mostrarrolesxId(array("id"=>$data["listado"][$i]->id_rol))->value;			
+			$data["listado"][$i]->id_tipo_cuenta = $this->Mtipocuenta->mostrartipocuentaxId(array("id"=>$data["listado"][$i]->id_tipo_cuenta))->value;
 		}
 		$data["cantidad"] = count($data["listado"]);
 		
@@ -58,37 +70,44 @@ class Usuario extends CoreController {
 	
 	public function add(){
 		if($this->isPostBack()){
-			$nombre = trim($this->input->post('nombre', true));
+			$tc = trim($this->input->post('tc', true));
 			$usuario = trim($this->input->post('usuario', true));
 			$email = trim($this->input->post('email', true));
 			$rol = trim($this->input->post('rol', true));
 			$password = trim($this->input->post('password', true));
-			if (empty($nombre) || empty($usuario) || empty($email) || empty($password) || empty($rol)){
+			if (empty($tc) || empty($usuario) || empty($email) || empty($password) || empty($rol)){
 				show_error("Está enviando datos vacíos al servidor");
 				exit;
 			}
-			$this->Musuario->insertar(array("nombre_completo"=>$nombre,"usuario"=>$usuario,"email"=>$email,"clave"=>md5($password),"id_rol"=>$rol));
+			$this->Musuario->insertar(array("id_tipo_cuenta"=>$tc,"usuario"=>$usuario,"email"=>$email,"clave"=>md5($password),"id_rol"=>$rol));
 			redirect("admin/seguridad/usuario");			
 		}
 		$result = $this->Mroles->listaroles();
-		
-		$this->template['view'] .= $this->load->view("admin/seguridad/usuario/add", array("id"=>"usuario","titulo"=>"Seguridad","subtitle"=>"Usuarios","result"=>$result), true);
+		$result_tc = $this->Mtipocuenta->listatipocuenta();
+
+		$this->template['view'] .= $this->load->view("admin/seguridad/usuario/add", array("id"=>"usuario","titulo"=>"Seguridad","subtitle"=>"Usuarios","result"=>$result,"result_tc"=>$result_tc), true);
         $this->loadAdmin();
 	}
 	
 	public function edit(){
 		if($this->isPostBack()){
-			$nombre = trim($this->input->post('nombre', true));
+			$tc = trim($this->input->post('tc', true));
 			$usuario = trim($this->input->post('usuario', true));
 			$email = trim($this->input->post('email', true));
 			$rol = trim($this->input->post('rol', true));
 			$id = trim($this->input->post('id', true));
 			$password = trim($this->input->post('password', true));
-			if (empty($nombre) || empty($usuario) || empty($email) || empty($rol)){
+			if (empty($tc) || empty($usuario) || empty($email) || empty($rol)){
 				show_error("Está enviando datos vacíos al servidor");
 				exit;
 			}
-			$this->Musuario->editar(array("nombre_completo"=>$nombre,"usuario"=>$usuario,"email"=>$email,"id_rol"=>$rol,"clave"=>md5($password)),$id);
+
+			$arreglo = array("usuario"=>$usuario,"email"=>$email,"id_rol"=>$rol,"id_tipo_cuenta"=>$tc);
+			if (!empty($password) || $password!=null){
+				$arreglo["clave"] = md5($password);
+			}
+
+			$this->Musuario->editar($arreglo,$id);
 			redirect("admin/seguridad/usuario");			
 		}
 		$id = $this->uri->segment(5, 0);
@@ -98,7 +117,8 @@ class Usuario extends CoreController {
 		}
 		$result = $this->Musuario->mostrarusuarioxId(array("id"=>$id));
 		$listado = $this->Mroles->listaroles();
-		$this->template['view'] .= $this->load->view("admin/seguridad/usuario/edit", array("id"=>"usuario","titulo"=>"Seguridad","subtitle"=>"Usuarios","result"=>$result,"listado"=>$listado), true);
+		$listado_tc = $this->Mtipocuenta->listatipocuenta();
+		$this->template['view'] .= $this->load->view("admin/seguridad/usuario/edit", array("id"=>"usuario","titulo"=>"Seguridad","subtitle"=>"Usuarios","result"=>$result,"listado"=>$listado,"listado_tc"=>$listado_tc), true);
         $this->loadAdmin();
 	}
 	
@@ -113,20 +133,16 @@ class Usuario extends CoreController {
 	}
 	
 	public function changestatus(){
-		$id = $this->uri->segment(5, 0);
-		$status = $this->uri->segment(6, 0);
-		if (empty($id)) {
-			show_error("Esta enviando datos vacios al servidor");
-			exit;
-		}
-		if ($status == 1 || $status == 0){
-			$reverse = ($status == 1?0:1);
-			$this->Musuario->editar(array("status"=>$reverse),$id);
-			redirect("admin/seguridad/usuario");
-		} else {
-			show_error("Esta enviando datos incorrectos al servidor");
-			exit;
-		}
+			$id = trim($this->input->post('id', true));
+			$status = trim($this->input->post('status', true));
+
+			if ($status == 1 || $status == 0){
+				$reverse = ($status == 1?0:1);
+				$this->Musuario->editar(array("status"=>$reverse),$id);
+				echo $reverse;exit;
+			} else {
+				echo "error";exit;
+			}
 	}
 	
 	public function changepassword(){

@@ -33,7 +33,7 @@ class Home extends CoreController {
 				redirect("admin/home/index");
 			} else {
 				$datos_session = array(
-					"nombreS"=>$result->nombre_completo,
+                    "tipocuentaS"=>$result->tipocuenta,
 					"userS"=>$result->usuario,
 					"rolS"=>$result->rol,
 					"idU"=>$result->ids,

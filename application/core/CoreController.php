@@ -60,7 +60,7 @@ class CoreController extends CI_Controller{
     }
 
     public function accesoAdmin(){
-        if (empty($this->session->userdata('nombreS')))
+        if (empty($this->session->userdata('idU')))
             redirect("admin/home");
     }
 

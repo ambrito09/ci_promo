@@ -8,19 +8,12 @@
 
                     <span class="section">Editar usuario</span>
 
-                    <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre completo <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="nombre" class="form-control col-md-7 col-xs-12" value="<?=($result->nombre_completo)?>" name="nombre" placeholder="Nombre" required="required" type="text">
-						<input type="hidden" name="id" value="<?=($result->id)?>" />
-                      </div>
-                    </div>	
 					<div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="usuario">Usuario <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input id="usuario" class="form-control col-md-7 col-xs-12" value="<?=($result->usuario)?>" name="usuario" placeholder="Usuario" required="required" type="text">
+						<input type="hidden" name="id" value="<?=$result->id?>" />
                       </div>
                     </div>
 					<div class="item form-group">
@@ -45,10 +38,24 @@
                       </div>
                     </div>
 					<div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Reset password <span class="required">*</span>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tc">Tipo de cuenta <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="password" class="form-control col-md-7 col-xs-12" name="password" placeholder="Password" required="required" type="password">
+                        <select name="tc" required="required" class="form-control">
+												<option value="">&laquo;Seleccionar&raquo;</option>
+												<?php
+													foreach($listado_tc as $l){
+													?>
+														<option <?=($result->id_tipo_cuenta==$l->id?"selected='selected'":"")?> value="<?=$l->id?>"><?=$l->value?></option>
+													<?php }?>
+											</select>
+                      </div>
+                    </div>
+					<div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Reset password
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="password" class="form-control col-md-7 col-xs-12" name="password" placeholder="Password" type="password">
                       </div>
                     </div>
                     <div class="ln_solid"></div>

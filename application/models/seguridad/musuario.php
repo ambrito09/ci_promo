@@ -13,7 +13,8 @@ class Musuario extends CoreModel {
 		$this->db->delete('usuario', $arreglo);
 	}
 	
-	public function listausuarios($per_page=null,$offset=null){
+	public function listausuarios($datos,$per_page=null,$offset=null){
+		$this->db->like($datos);
 		$query = $this->db->get('usuario',$per_page,$offset); 
 		return $query->result();		
 	}
@@ -40,7 +41,8 @@ class Musuario extends CoreModel {
 		$this->db->update('usuario', $data, array('id' => $id));
 	}
 	
-	public function cantidad(){
+	public function cantidad($datos){
+		$this->db->like($datos);
 		$query = $this->db->get('usuario'); 
 		return $query->num_rows();
 	}

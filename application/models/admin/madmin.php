@@ -6,8 +6,9 @@ class Madmin extends CoreModel {
     }
 
     public function login($data){
-        $this->db->select("nombre_completo,usuario,roles.value as rol,usuario.id as ids,email,status");
+        $this->db->select("usuario,roles.value as rol,usuario.id as ids,email,status,tipo_cuenta.value as tipocuenta");
         $this->db->join("roles", "usuario.id_rol = roles.id");
+        $this->db->join("tipo_cuenta", "usuario.id_tipo_cuenta = tipo_cuenta.id");
         $query = $this->db->get_where('usuario', $data);
         if ($query->first_row()!=null)
             return $query->first_row();
@@ -44,21 +45,23 @@ class Madmin extends CoreModel {
     }
 
     public function estadisticas(){
-        $this->db->select("count(id) as cantidad");
-        $visitas = $this->db->get_where('contador')->first_row()->cantidad;
-        $this->db->select("count(id) as cantidad");
-        $visitas_publicidad = $this->db->get_where('contador','id_publicidad != 0')->first_row()->cantidad;
-        $this->db->select("count(id) as cantidad");
-        $usuarios = $this->db->get_where('usuario')->first_row()->cantidad;
-        $this->db->select("count(id) as cantidad");
-        $publicidad = $this->db->get_where('publicidad',array("if_activo"=>1))->first_row()->cantidad;
-        $this->db->select("count(id) as cantidad");
-        $ofertas_vip = $this->db->get_where('publicidad',array("if_activo"=>1,"carrusel_vip"=>1))->first_row()->cantidad;
-        return array("visitas"=>$visitas,"usuarios"=>$usuarios,"publicidad"=>$publicidad,"visitas_publicidad"=>$visitas_publicidad,"ofertas_vip"=>$ofertas_vip);
-    }
+		$this->db->select("count(id) as cantidad");
+		$visitas = $this->db->get_where('contador')->first_row()->cantidad;
+		$this->db->select("count(id) as cantidad");
+		$visitas_publicidad = $this->db->get_where('contador','id_publicidad != 0')->first_row()->cantidad;
+		$this->db->select("count(id) as cantidad");
+		$usuarios = $this->db->get_where('usuario')->first_row()->cantidad;
+		$this->db->select("count(id) as cantidad");
+		$publicidad = $this->db->get_where('publicidad',array("if_activo"=>1))->first_row()->cantidad;
+		$this->db->select("count(id) as cantidad");
+		$ofertas_vip = $this->db->get_where('publicidad',array("if_activo"=>1,"carrusel_vip"=>1))->first_row()->cantidad;
+		$this->db->select("sum(pago) as cantidad");
+		$total_ventas = $this->db->get_where('ventas')->first_row()->cantidad;
+		return array("visitas"=>$visitas,"usuarios"=>$usuarios,"publicidad"=>$publicidad,"visitas_publicidad"=>$visitas_publicidad,"ofertas_vip"=>$ofertas_vip,"total_ventas"=>$total_ventas);
+	}
 
     public function topprofile(){
-        $this->db->select("nombre_completo,cant_puntos,count(contador.id) as cantidad,id_usuario");
+        $this->db->select("usuario,cant_puntos,count(contador.id) as cantidad,id_usuario");
         $this->db->join("contador", "usuario.id = contador.id_usuario");
         $this->db->order_by('cant_puntos', 'DESC');
         $this->db->order_by('cantidad', 'DESC');

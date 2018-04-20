@@ -9,13 +9,6 @@
                     <span class="section">Adicionar usuario</span>
 
 					<div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nombre">Nombre completo <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="nombre" class="form-control col-md-7 col-xs-12" name="nombre" placeholder="Nombre" required="required" type="text">
-                      </div>
-                    </div>	
-					<div class="item form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="usuario">Usuario <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
@@ -41,6 +34,20 @@
 													foreach($result as $l){													
 													?>														
 														<option value="<?=$l->id?>"><?=$l->value?></option>
+													<?php }?>
+											</select>
+                      </div>
+                    </div>
+					<div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tc">Tipo de cuenta <span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select name="tc" required="required" class="form-control">
+												<option value="">&laquo;Seleccionar&raquo;</option>
+												<?php
+													foreach($result_tc as $l){
+													?>
+														<option value="<?=$l->id?>"><?=$l->value?></option>
 													<?php }?>												
 											</select>
                       </div>
@@ -56,7 +63,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="retypepassword">Retype password <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="password" required="required" name="retypepassword" data-parsley-equalto="#password1" class="form-control" placeholder="Retype password" autocomplete="off" data-parsley-required/>
+                        <input type="password" required="required" name="retypepassword" data-parsley-equalto="#password" class="form-control" placeholder="Retype password" autocomplete="off" data-parsley-required/>
                       </div>
                     </div>
                     				
