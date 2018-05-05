@@ -12,8 +12,18 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="valor">Valor <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="valor" class="form-control col-md-7 col-xs-12" name="valor" placeholder="Servicio" required="required" type="text">
+					    <?php foreach($idiomas as $i) { ?>
+                        <input <?=($i->lang!=$this->session->userdata("langS")?"style='display:none'":"")?> class="form-control col-md-7 col-xs-12 lenguajes lenguajes<?=$i->lang?>" name="valor[]" placeholder="Servicio" type="text"/>
+						<input type="hidden" value="<?=$i->lang?>" name="hvalores[]" />
+						<?php }?>
                       </div>
+					  <div class="col-md-3 col-sm-3 col-xs-12">
+					    <select class="form-control changelang"  style="width: auto;" name="lenguaje">
+							<?php foreach($idiomas as $i) {?>
+							<option <?=($i->lang==$this->session->userdata("langS")?"selected='selected'":"")?> value="<?=$i->lang?>"><?=$i->name?></option>
+							<?php }?>
+						</select>
+					  </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">

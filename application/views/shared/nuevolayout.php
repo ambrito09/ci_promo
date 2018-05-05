@@ -88,13 +88,15 @@
                                     <ul class="nav child_menu" style="display: none">
                                         <li><a  href="<?=site_url()?>/admin/nomencladores/provincia/">Provincias</a>
                                         </li>
-										<li><a href="<?=site_url()?>/admin/nomencladores/servicio/">Servicio</a>
+										<li><a href="<?=site_url()?>/admin/nomencladores/servicio/">Servicios</a>
                                         </li>
 										<li><a href="<?=site_url()?>/admin/nomencladores/categoria/">Categorias</a>
                                         </li>
 										<li><a href="<?=site_url()?>/admin/nomencladores/tipocuenta/">Tipo de cuenta</a>
                                         </li>
 										<li><a  href="<?=site_url()?>/admin/nomencladores/ofertaspuntos/">Ofertas de Puntos</a>
+                                        </li>
+										<li><a  href="<?=site_url()?>/admin/nomencladores/idioma/">Idiomas</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -160,6 +162,25 @@
                   </li>
                   <li><a href="<?=site_url("admin/home/logout")?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </li>
+                </ul>
+              </li>
+			  <li role="presentation" class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                  <img src="<?=base_url()?>assets/img/flags/<?=strtoupper($this->session->userdata("langS"))?>.png"/>
+                </a>
+                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+				 <?php
+				    foreach($idiomas as $i) { if ($i->lang != $this->session->userdata("langS")) {?>
+                  <li>
+                    <a href="<?=site_url("admin/seguridad/dashboard/idiomas/".$i->lang )?>">
+                      <span class="image">
+                                        <img src="<?=base_url()?>assets/img/flags/<?=strtoupper($i->lang)?>.png"/>
+                                    </span>
+                      <span>
+                                        <span><?=$i->name?></span>
+                    </a>
+                  </li>
+					<?php } }?>
                 </ul>
               </li>
 
@@ -231,7 +252,17 @@
 	<!-- image cropping -->
   <script src="<?=base_url()?>dashboard/js/cropping/cropper.min.js"></script>
   <script src="<?=base_url()?>dashboard/js/cropping/main.js"></script>
-
+<script>
+$(function(){
+	$(".changelang").each(function(){
+		$(this).change(function(){
+			$(".changelang").val($(this).val());
+			$(".lenguajes").css("display","none");
+			$(".lenguajes"+$(this).val()).css("display","");
+		});
+	});
+});
+</script>
 
 </body>
 

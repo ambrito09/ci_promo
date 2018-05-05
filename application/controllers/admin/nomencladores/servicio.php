@@ -8,6 +8,7 @@ class Servicio extends CoreController {
         parent::__construct();
 		$this->accesoAdmin();
 		$this->load->model("nomencladores/Mservicio");
+		$this->load->model("nomencladores/Midioma");
     }
 
 	public function index()
@@ -16,7 +17,10 @@ class Servicio extends CoreController {
 		$per_page = 5;
 		$offset = ($this->uri->segment(5, 0)!=null?($this->uri->segment(5, 0)-1)*$per_page:0);
 		$total_rows = $this->Mservicio->cantidad();
-		$data["listado"] = $this->Mservicio->listaservicio($per_page,$offset);
+
+		$id_lang = $this->Midioma->mostraridiomaxcode(array("lang"=>$this->session->userdata("langS")));
+		$data["listado"] = $this->Mservicio->listaservicio(array("id_lang"=>$id_lang),$per_page,$offset);
+
 		$data["cantidad"] = count($data["listado"]);
 		
 		$this->pagination->initialize(
@@ -54,28 +58,33 @@ class Servicio extends CoreController {
 	
 	public function add(){
 		if($this->isPostBack()){
-			$valor = trim($this->input->post('valor', true));
-			if (empty($valor)){
+			$names = $this->input->post('valor', true);
+			$codes = $this->input->post('hvalores', true);
+			if (count($names)==0){
 				show_error("Está enviando datos vacíos al servidor");
 				exit;
 			}
-			$this->Mservicio->insertar(array("value"=>$valor));
+			$this->Mservicio->insertar($names,$codes);
 			redirect("admin/nomencladores/servicio");			
 		}
 
-		$this->template['view'] .= $this->load->view("admin/nomencladores/servicio/add", array("id"=>"servicio","titulo"=>"Nomencladores","subtitle"=>"Servicios"), true);
+		$this->template['view'] .= $this->load->view("admin/nomencladores/servicio/add", array("id"=>"servicio","titulo"=>"Nomencladores","subtitle"=>"Servicios","idiomas"=>$this->Midioma->listaidioma()), true);
         $this->loadAdmin();
 	}
 	
 	public function edit(){
 		if($this->isPostBack()){
-			$valor = trim($this->input->post('valor', true));
-			$id = trim($this->input->post('id', true));
-			if (empty($valor) || empty($id)){
+
+			$names = $this->input->post('valor', true);
+			$codes = $this->input->post('hvalores', true);
+			$id = $this->input->post('hid', true);
+			if (count($names)==0){
 				show_error("Está enviando datos vacíos al servidor");
 				exit;
 			}
-			$this->Mservicio->editar(array("value"=>$valor),$id);
+			$this->Mservicio->eliminar_serv_lang(array("id_servicio"=>$id));
+			$this->Mservicio->editar($names,$codes,$id);
+
 			redirect("admin/nomencladores/servicio");			
 		}
 		$id = $this->uri->segment(5, 0);
@@ -84,7 +93,8 @@ class Servicio extends CoreController {
 			exit;
 		}
 		$result = $this->Mservicio->mostrarservicioxId(array("id"=>$id));
-		$this->template['view'] .= $this->load->view("admin/nomencladores/servicio/edit", array("id"=>"servicio","titulo"=>"Nomencladores","subtitle"=>"Servicios","result"=>$result), true);
+		$cats = $this->Mservicio->listaservicio(array("id_servicio"=>$result->id));
+		$this->template['view'] .= $this->load->view("admin/nomencladores/servicio/edit", array("id"=>"servicio","titulo"=>"Nomencladores","subtitle"=>"Servicios","result"=>$result,"idiomas"=>$this->Midioma->listaidioma(),"cats"=>$cats), true);
         $this->loadAdmin();
 	}
 	
@@ -94,6 +104,7 @@ class Servicio extends CoreController {
 			show_error("Esta enviando datos vacios al servidor");
 			exit;
 		}
+		$this->Mservicio->eliminar_serv_lang(array("id_servicio"=>$id));
 		$this->Mservicio->eliminar(array("id"=>$id));
 		redirect("admin/nomencladores/servicio");
 	}

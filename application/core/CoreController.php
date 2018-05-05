@@ -26,12 +26,14 @@ class CoreController extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
+		$this->load->model("nomencladores/Midioma");
         /*Default vars for the template*/
         $this->template = array(
             'title' => 'Promotion',
             'viewTitle' => '',
             'keywords' => '',
             'description' => '',
+			"idiomas"=>$this->Midioma->listaidioma(),
             'view' => '',
             'menu' => $this->loadMenu("_frontMenu")
         );
@@ -100,6 +102,13 @@ class CoreController extends CI_Controller{
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
+
+	public function idiomas(){
+		$lang = $this->uri->segment(5);
+		$this->session->unset_userdata('langS');
+        $this->session->set_userdata("langS", $lang);
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 
     public function cargaIdioma($idioma) {
         if($idioma == 'it')

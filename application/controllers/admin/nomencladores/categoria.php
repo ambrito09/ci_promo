@@ -8,15 +8,19 @@ class Categoria extends CoreController {
         parent::__construct();
 		$this->accesoAdmin();
 		$this->load->model("nomencladores/Mcategoria");
+		$this->load->model("nomencladores/Midioma");
     }
 
 	public function index()
 	{
 		$this->load->library('pagination');	
 		$per_page = 5;
+
 		$offset = ($this->uri->segment(5, 0)!=null?($this->uri->segment(5, 0)-1)*$per_page:0);
 		$total_rows = $this->Mcategoria->cantidad();
-		$data["listado"] = $this->Mcategoria->listacategoria($per_page,$offset);
+		$id_lang = $this->Midioma->mostraridiomaxcode(array("lang"=>$this->session->userdata("langS")));
+		$data["listado"] = $this->Mcategoria->listacategoria(array("id_lang"=>$id_lang),$per_page,$offset);
+
 		$data["cantidad"] = count($data["listado"]);
 		
 		$this->pagination->initialize(
@@ -54,28 +58,32 @@ class Categoria extends CoreController {
 	
 	public function add(){
 		if($this->isPostBack()){
-			$valor = trim($this->input->post('valor', true));
-			if (empty($valor)){
+			$names = $this->input->post('valor', true);
+			$codes = $this->input->post('hvalores', true);
+			if (count($names)==0){
 				show_error("Está enviando datos vacíos al servidor");
 				exit;
 			}
-			$this->Mcategoria->insertar(array("value"=>$valor));
+			$this->Mcategoria->insertar($names,$codes);
 			redirect("admin/nomencladores/categoria");			
 		}
 
-		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/add", array("id"=>"categoria","titulo"=>"Nomencladores","subtitle"=>"Categor&iacute;as"), true);
+		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/add", array("id"=>"categoria","titulo"=>"Nomencladores","subtitle"=>"Categor&iacute;as","idiomas"=>$this->Midioma->listaidioma()), true);
         $this->loadAdmin();
 	}
 	
 	public function edit(){
 		if($this->isPostBack()){
-			$valor = trim($this->input->post('valor', true));
-			$id = trim($this->input->post('id', true));
-			if (empty($valor) || empty($id)){
+			$names = $this->input->post('valor', true);
+			$codes = $this->input->post('hvalores', true);
+			$id = $this->input->post('hid', true);
+			if (count($names)==0){
 				show_error("Está enviando datos vacíos al servidor");
 				exit;
 			}
-			$this->Mcategoria->editar(array("value"=>$valor),$id);
+			$this->Mcategoria->eliminar_cat_lang(array("id_categoria"=>$id));
+			$this->Mcategoria->editar($names,$codes,$id);
+			//$this->Mcategoria->editar(array("value"=>$valor),$id);
 			redirect("admin/nomencladores/categoria");			
 		}
 		$id = $this->uri->segment(5, 0);
@@ -84,7 +92,9 @@ class Categoria extends CoreController {
 			exit;
 		}
 		$result = $this->Mcategoria->mostrarcategoriaxId(array("id"=>$id));
-		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/edit", array("id"=>"categoria","titulo"=>"Nomencladores","subtitle"=>"Categor&iacute;as","result"=>$result), true);
+		$cats = $this->Mcategoria->listacategoria(array("id_categoria"=>$result->id));
+
+		$this->template['view'] .= $this->load->view("admin/nomencladores/categoria/edit", array("id"=>"categoria","titulo"=>"Nomencladores","subtitle"=>"Categor&iacute;as","result"=>$result,"idiomas"=>$this->Midioma->listaidioma(),"cats"=>$cats), true);
         $this->loadAdmin();
 	}
 	
@@ -94,6 +104,7 @@ class Categoria extends CoreController {
 			show_error("Esta enviando datos vacios al servidor");
 			exit;
 		}
+		$this->Mcategoria->eliminar_cat_lang(array("id_categoria"=>$id));
 		$this->Mcategoria->eliminar(array("id"=>$id));
 		redirect("admin/nomencladores/categoria");
 	}

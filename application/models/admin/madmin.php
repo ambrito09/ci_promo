@@ -6,7 +6,7 @@ class Madmin extends CoreModel {
     }
 
     public function login($data){
-        $this->db->select("usuario,roles.value as rol,usuario.id as ids,email,status,tipo_cuenta.value as tipocuenta");
+        $this->db->select("usuario,roles.value as rol,usuario.id as ids,email,status,tipo_cuenta.value as tipocuenta,lang");
         $this->db->join("roles", "usuario.id_rol = roles.id");
         $this->db->join("tipo_cuenta", "usuario.id_tipo_cuenta = tipo_cuenta.id");
         $query = $this->db->get_where('usuario', $data);

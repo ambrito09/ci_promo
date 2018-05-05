@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Publicidad extends CoreController {
+class Idioma extends CoreController {
 	
     public function __construct()
     {
         parent::__construct();
 		$this->accesoAdmin();
-		$this->load->model("admin/Mpublicidad");
 		$this->load->model("nomencladores/Midioma");
     }
 
@@ -15,16 +14,14 @@ class Publicidad extends CoreController {
 	{
 		$this->load->library('pagination');	
 		$per_page = 5;
-
 		$offset = ($this->uri->segment(5, 0)!=null?($this->uri->segment(5, 0)-1)*$per_page:0);
-		$total_rows = $this->Mpublicidad->cantidad();
-		$id_lang = $this->Midioma->mostraridiomaxcode(array("lang"=>$this->session->userdata("langS")));
-		$data["listado"] = $this->Mpublicidad->listarpublicidad(array("servicio_lang.id_lang"=>$id_lang,"categoria_lang.id_lang"=>$id_lang,"publicidad_lang.id_lang"=>$id_lang),$per_page,$offset);
+		$total_rows = $this->Midioma->cantidad();
+		$data["listado"] = $this->Midioma->listaidioma($per_page,$offset);
 		$data["cantidad"] = count($data["listado"]);
 		
 		$this->pagination->initialize(
             array(
-                'base_url'		 => site_url('/admin/publicidad/publicidad/index/'),
+                'base_url'		 => site_url('/admin/nomencladores/idioma/index/'),
                 'total_rows'	 => $total_rows,
                 'per_page'		 => $per_page,
                 'uri_segment'	 => 5,
@@ -48,39 +45,48 @@ class Publicidad extends CoreController {
             )
         );
 		$data['pagination'] = $this->pagination->create_links();
-		$data["id"] = "publicidad";
-		$data["titulo"] = "Publicidad";
-		$data["subtitle"] = "Anuncios";
-        $this->template['view'] .= $this->load->view("admin/publicidad/index",$data, true);
+		$data["id"] = "idioma";
+		$data["titulo"] = "Nomencladores";
+		$data["subtitle"] = "Idioma";
+        $this->template['view'] .= $this->load->view("admin/nomencladores/idioma/index",$data, true);
         $this->loadAdmin();
 	}
 	
-	public function changestatus(){
-		$id = $this->uri->segment(5, 0);
-		$status = $this->uri->segment(6, 0);
-		if (empty($id)) {
-			show_error("Esta enviando datos vacios al servidor");
-			exit;
+	public function add(){
+		if($this->isPostBack()){
+			$nombre = trim($this->input->post('nombre', true));
+			$codigo = trim($this->input->post('codigo', true));
+			if (empty($nombre) || empty($codigo)){
+				show_error("Está enviando datos vacíos al servidor");
+				exit;
+			}
+			$this->Midioma->insertar(array("lang"=>$codigo,"name"=>$nombre));
+			redirect("admin/nomencladores/idioma");			
 		}
-		if ($status == 1 || $status == 0){
-			$reverse = ($status == 1?0:1);
-			$this->Mpublicidad->editar(array("if_activo"=>$reverse),$id);
-			redirect("admin/publicidad/publicidad/index");
-		} else {
-			show_error("Esta enviando datos incorrectos al servidor");
-			exit;
-		}
+
+		$this->template['view'] .= $this->load->view("admin/nomencladores/idioma/add", array("id"=>"idioma","titulo"=>"Nomencladores","subtitle"=>"Idioma"), true);
+        $this->loadAdmin();
 	}
 	
-	public function view(){
+	public function edit(){
+		if($this->isPostBack()){
+			$nombre = trim($this->input->post('nombre', true));
+			$codigo = trim($this->input->post('codigo', true));
+			$id = trim($this->input->post('id', true));
+			if (empty($nombre) || empty($id) || empty($codigo)){
+				show_error("Está enviando datos vacíos al servidor");
+				exit;
+			}
+			$this->Midioma->editar(array("lang"=>$codigo,"name"=>$nombre),$id);
+			redirect("admin/nomencladores/idioma");			
+		}
 		$id = $this->uri->segment(5, 0);
 		if (empty($id)) {
 			show_error("Esta enviando datos vacios al servidor");
 			exit;
 		}
-		$id_lang = $this->Midioma->mostraridiomaxcode(array("lang"=>$this->session->userdata("langS")));
-		$result = $this->Mpublicidad->mostrarpublicidadxId(array("publicidad.id"=>$id,"servicio_lang.id_lang"=>$id_lang,"categoria_lang.id_lang"=>$id_lang,"publicidad_lang.id_lang"=>$id_lang));
-		$this->template['view'] .= $this->load->view("admin/publicidad/view", array("id"=>"publicidad","titulo"=>"Publicidad","subtitle"=>"Anuncios","result"=>$result), true);
+		$result = $this->Midioma->mostraridiomaxId(array("id"=>$id));
+		$this->template['view'] .= $this->load->view("admin/nomencladores/idioma/edit", array("id"=>"idioma","titulo"=>"Nomencladores","subtitle"=>"Idioma","result"=>$result), true);
         $this->loadAdmin();
 	}
 	
@@ -90,8 +96,7 @@ class Publicidad extends CoreController {
 			show_error("Esta enviando datos vacios al servidor");
 			exit;
 		}
-		$this->Mpublicidad->eliminar(array("id"=>$id));
-		$this->Mpublicidad->eliminar_pub_lang(array("id_publicidad"=>$id));
-		redirect("admin/publicidad/publicidad/index");
+		$this->Midioma->eliminar($id);
+		redirect("admin/nomencladores/idioma");
 	}
 }

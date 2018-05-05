@@ -33,12 +33,13 @@ class Home extends CoreController {
 				redirect("admin/home/index");
 			} else {
 				$datos_session = array(
-                    "tipocuentaS"=>$result->tipocuenta,
+					"tipocuentaS"=>$result->tipocuenta,
 					"userS"=>$result->usuario,
 					"rolS"=>$result->rol,
 					"idU"=>$result->ids,
 					"emailS"=>$result->email,
 					"statusS"=>$result->status,
+					"langS"=>$result->lang,
 					"loggedIn"=>true
 				);
 				$this->session->set_userdata($datos_session);
