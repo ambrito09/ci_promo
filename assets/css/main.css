@@ -55,9 +55,6 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
-.btn {
-    border-radius: 0;
-}
 .btn-green {
     color: #fff;
     background-color: #1abc9c;
