@@ -45,13 +45,13 @@ class Home extends CoreController {
             if ($result != null)
             {
                 $datos_session = array(
-                    "nombreS"=>$result->nombre_completo,
+                    "tipocuentaS"=>$result->id_tipo_cuenta,
                     "userS"=>$result->usuario,
                     "rolS"=>$result->id_rol,
                     "idU"=>$result->id,
                     "emailS"=>$result->email,
                     "statusS"=>$result->status,
-                    "puntosS"=>$result->cant_puntos,
+                    "langS"=>$result->lang,
                     "loggedIn"=>true
                 );
                 $this->session->set_userdata($datos_session);

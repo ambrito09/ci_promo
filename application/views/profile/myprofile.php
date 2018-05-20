@@ -28,11 +28,9 @@
                 </li>
                 <li class="list-group-item">
                     <?=$this->lang->line('profile_publicidad')?>
-                    <?php if(!empty($user->publicidad)){?>
-                        <img src="<?=base_url()?>assets/img/check.png" width="24" height="24" class="img-fluid pull-right"/>
-                    <?php } else { ?>
-                        <img src="<?=base_url()?>assets/img/uncheck.png" width="24" height="24" class="img-fluid pull-right"/>
-                    <?php } ?>
+                    <a href="<?=site_url("profile/myannounce/" . $this->session->userdata("idU"))?>" class="btn btn-success btn-sm pull-right" role="button">
+                        <?=$this->lang->line('profile_publicidad_view')?>
+                    </a>
                 </li>
                 <li class="list-group-item">
                     <?=$this->lang->line('profile_points')?>

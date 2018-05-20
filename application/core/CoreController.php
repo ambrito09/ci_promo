@@ -122,4 +122,12 @@ class CoreController extends CI_Controller{
         $this->cargaIdioma($this->session->userdata("lang"));
         return $this->load->view("shared/$menu", array(), true);
     }
+
+    public function getCurrentIdioma()
+    {
+        foreach ($this->template["idiomas"] as $idioma) {
+            if ($this->session->userdata("lang") == $idioma->lang)
+                return $idioma;
+        }
+    }
 }

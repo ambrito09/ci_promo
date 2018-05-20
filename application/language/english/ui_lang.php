@@ -13,6 +13,8 @@ $lang['link_viewtransactions'] = "My Transactions";
 $lang['breadcrumb_home'] = "Home";
 $lang['breadcrumb_profile'] = "Profile";
 $lang['breadcrumb_myprofile'] = "My Profile";
+$lang['breadcrumb_createannounce'] = "Create Announce";
+$lang['breadcrumb_editannounce'] = "Edit Announce";
 $lang['breadcrumb_getpoints'] = "Get Points";
 $lang['breadcrumb_upgrade'] = "Upgrade Account";
 /* HOME PAGE LINKS*/
@@ -42,6 +44,8 @@ $lang['profile_status_active'] = "Active";
 $lang['profile_status_inactive'] = "Inactive";
 $lang['profile_visits'] = "Profile Visits";
 $lang['profile_publicidad'] = "Has Public Profile?";
+$lang['profile_publicidad_create'] = "Create";
+$lang['profile_publicidad_view'] = "View/Edit";
 /* POINTS UI */
 $lang["points_info"] = "You have {points} points.";
 $lang["points_hdrpoints"] = "Points";
@@ -51,6 +55,18 @@ $lang["points_buypoints"] = "Buy Points";
 $lang["upgrade_hdrtype"] = "Account Type";
 $lang["upgrade_hdrprice"] = "Price";
 $lang["upgrade_btn"] = "Upgrade";
+/* ANNOUNCE */
+$lang["announce_email"] = "Email";
+$lang["announce_phone"] = "Phone";
+$lang["announce_zone"] = "Zone";
+$lang["announce_province"] = "Province";
+$lang["announce_servicios"] = "Services";
+$lang["announce_btnSubmit"] = "Save";
+$lang["announce_phonePlaceholder"] = "Enter your phone";
+$lang["announce_contentPlaceholder"] = "Enter a description of you";
+$lang["announce_zonePlaceholder"] = "Enter your zone";
+$lang["announce_provincePlaceholder"] = "Select your province";
+$lang["announce_tituloPlaceholder"] = "Enter a title";
 
 /* End of file messages.php */
 /* Location: ./system/application/language/english/messages.php */

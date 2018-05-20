@@ -13,7 +13,7 @@ class Profile extends CoreController
         parent::__construct();
         $this->load->model("seguridad/Musuario", "usuario");
 
-        if ($this->session->userdata("nombreS") == false)
+        if ($this->session->userdata("idU") == false)
         {
             redirect(site_url("home/login"));
         }
@@ -65,11 +65,48 @@ class Profile extends CoreController
         $this->loadView();
     }
 
+    public function myannounce()
+    {
+        $currentLang = $this->getCurrentIdioma();
+        $this->load->model("nomencladores/mservicio", "serv");
+        $this->load->model("nomencladores/mprovincia", "prov");
+        $this->load->model("admin/mpublicidad", "publ");
+        $data = array();
+        $data["publicidad"] = $this->publ->getPublicidadById($this->session->userdata("idU"), $currentLang->id);
+        $data["servicios"] = $this->serv->listaservicioLang(array("id_lang"=>$currentLang->id));
+        $data["provincias"] = $this->prov->listaProvincia();
+        $this->template["view"] = $this->load->view("profile/createannounce", $data, true);
+        $this->loadView();
+    }
+
+    public function saveannounce()
+    {
+        if ($this->isPostBack($_POST))
+        {
+            $this->load->model("admin/mpublicidad", "publ");
+            $currentLang = $this->getCurrentIdioma();
+            $has_publicidad = $this->publ->getPublicidadById($this->session->userdata("idU"), $currentLang->id);
+            if ($has_publicidad != null)
+            {
+                $this->publ->modificarpublicidad($_POST, $this->template["idiomas"]);
+            }
+            else
+            {
+                $this->publ->insertarpublicidad($_POST, $this->template["idiomas"]);
+            }
+            redirect(site_url("profile/myprofile"));
+        }
+        else
+        {
+            redirect(site_url());
+        }
+    }
+
     private function _getUserData()
     {
         $user = $this->usuario->mostrarusuarioxId(array('id'=>$this->session->userdata("idU")));
         $user->cant_visitas = $this->usuario->getProfileVisitCount($user->id);
-        $user->cant_visitas = $this->usuario->getProfileVisitCount($user->id);
+        $user->publicidad = $this->usuario->getUserPublicidad($user->id);
 
         return $user;
     }

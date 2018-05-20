@@ -661,3 +661,13 @@ hr {
     transition-timing-function: ease-out;
     width: 100%;
 }
+
+.form-announces
+{
+    padding: 1.25rem;
+    display: flex;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}

@@ -43,4 +43,123 @@ class Mpublicidad extends CoreModel {
 		$this->db->delete('publicidad_lang', $arreglo);
 	}
 
+    public function eliminar_serv_pub($arreglo){
+        $this->db->delete('servicios_publicidad', $arreglo);
+    }
+
+    public function insertarpublicidad($arreglo, $idiomas)
+    {
+        //Datos para tabla publicidad
+        $publicidad = array(
+            "id_provincia"=>$arreglo["announceProvince"],
+            "email_publico"=>$this->session->userdata("emailS"),
+            "id_usuario"=>$this->session->userdata("idU"),
+            "numero_telefono"=>$arreglo["announcePhone"],
+            "if_activo"=>1,
+            "cant_visitas"=>0,
+            "fecha_publicacion"=>date("Y-m-d"),
+            "zona"=>$arreglo["announceZone"]
+        );
+        $this->db->insert("publicidad", $publicidad);
+        $id_publicidad = $this->db->insert_id();
+
+        foreach ($idiomas as $lang)
+        {
+            //Datos para tabla publicidad_lang
+            $publicidad_lang = array(
+                "id_publicidad" => $id_publicidad,
+                "id_lang" => $lang->id,
+                "contenido_publicidad" => $arreglo["announceContent".$lang->lang],
+                "titulo_publicidad" => $arreglo["announceTitulo".$lang->lang]
+            );
+            $this->db->insert("publicidad_lang", $publicidad_lang);
+        }
+
+        foreach ($arreglo["announceServicesSelected"] as $item)
+        {
+            //Datos para tabla servicios_publicidad
+            $servicios_publicidad = array(
+                "id_publicidad" => $id_publicidad,
+                "id_servicio" => $item
+            );
+            $this->db->insert("servicios_publicidad", $servicios_publicidad);
+        }
+	}
+
+    public function getPublicidadById($idU, $currentLangId)
+    {
+        $query = $this->db->get_where("publicidad", array("id_usuario"=>$idU));
+
+        if ($query->num_rows() == 0)
+        {
+            return null;
+        }
+
+        //Publicidad a retornar
+        $publicidad = $query->first_row();
+        $publicidad->publicidad_lang = array();
+        $publicidad->serv_publicidad = array();
+        //Publicidad_lang
+        $query_lang = $this->db->get_where("publicidad_lang", array("id_publicidad"=>$publicidad->id));
+
+        if ($query_lang->num_rows() != 0)
+        {
+            foreach ($query_lang->result() as $item)
+            {
+                $publicidad->publicidad_lang[$item->id_lang] = $item;
+            }
+        }
+
+        //servicios_publicidad
+        $this->db->join("servicio_lang", "servicios_publicidad.id_servicio = servicio_lang.id_servicio AND servicio_lang.id_lang = ".$currentLangId);
+        $query_serv = $this->db->get_where("servicios_publicidad", array("id_publicidad"=>$publicidad->id));
+        if ($query_serv->num_rows() != 0)
+        {
+            foreach ($query_serv->result() as $item)
+            {
+                $publicidad->serv_publicidad[] = $item;
+            }
+        }
+
+        return $publicidad;
+	}
+
+    public function modificarpublicidad($arreglo, $idiomas)
+    {
+        $query = $this->db->get_where("publicidad", array("id_usuario"=>$this->session->userdata("idU")));
+
+        $user_publicidad = $query->first_row();
+
+        //Datos para tabla publicidad
+        $publicidad = array(
+            "id_provincia"=>$arreglo["announceProvince"],
+            "numero_telefono"=>$arreglo["announcePhone"],
+            "fecha_publicacion"=>date("Y-m-d"),
+            "zona"=>$arreglo["announceZone"]
+        );
+        $this->db->update("publicidad", $publicidad,array("id"=>$user_publicidad->id));
+
+        foreach ($idiomas as $lang)
+        {
+            //Datos para tabla publicidad_lang
+            $publicidad_lang = array(
+                "contenido_publicidad" => $arreglo["announceContent".$lang->lang],
+                "titulo_publicidad" => $arreglo["announceTitulo".$lang->lang]
+            );
+            $this->db->update("publicidad_lang", $publicidad_lang,array("id_publicidad"=>$user_publicidad->id, "id_lang"=>$lang->id));
+        }
+
+        //Eliminamos los servicios
+        $this->db->delete("servicios_publicidad", array("id_publicidad" => $user_publicidad->id));
+
+        foreach ($arreglo["announceServicesSelected"] as $item)
+        {
+            //Datos para tabla servicios_publicidad
+            $servicios_publicidad = array(
+                "id_publicidad" => $user_publicidad->id,
+                "id_servicio" => $item
+            );
+            $this->db->insert("servicios_publicidad", $servicios_publicidad);
+        }
+	}
 }
